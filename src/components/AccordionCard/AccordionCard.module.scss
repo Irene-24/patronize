@@ -1,0 +1,58 @@
+@import "../../assets/scss/index.scss";
+
+.card
+{
+    padding: 10px 22px;
+    background: $border;
+    border-radius: 5px;
+    margin: 28px 0px;
+
+
+    .label
+    {
+        background-color: transparent;
+        width: 100%;
+        padding: 12px 0;
+        @include flex-btw;
+
+        .left
+        {
+            @include flex-btw;
+            p
+            {
+                margin-left: 10px;
+                color:$black;
+                font-size: 12px;
+                font-weight: 500;
+            }
+        }
+
+        .right
+        {
+            font-size: 10px;
+            color:#5257F5;
+            display: grid;
+            grid-template-columns: 50px auto;
+        }
+
+
+    }
+
+    .panel
+    {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+
+            @include mq("tablet")
+            {
+              
+            }
+
+            &.active
+            {
+                max-height: 1000px;
+                transition: max-height 1s ease-in-out;
+            }
+    }
+}

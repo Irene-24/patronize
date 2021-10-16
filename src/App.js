@@ -1,24 +1,124 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import styles from './App.module.scss';
+import { Form, Formik } from "formik";
+import { schema, initValues } from "./utils";
+import
+{
+  Button,
+  Tabs,
+  Tab,
+  Fade,
+  VerifyAccount,
+  BusinessCategory,
+  SocialHandle
+} from "./components";
+
+
+const getValid = ( formikProps, key ) =>
+{
+  const { error } = formikProps;
+  console.log( formikProps );
+  switch ( key ) 
+  {
+    case "vf":
+      return true;
+
+    case "sh":
+      return true;
+
+    case "bc":
+      return true;
+
+    default:
+      return true;
+  }
+};
+
+
+
+function App ()
+{
+
+  const [ details, setDetails ] = useState( null );
+
+  const submitHandler = values =>
+  {
+    console.log( values );
+    setDetails( values );
+  };
+
+  //key  for fade it necessary, else animation won't run
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <main>
+      <div className={ styles.illus }> <div /> </div>
+      <section className={ styles.form }>
+
+        <Formik
+          initialValues={ initValues }
+          validationSchema={ schema }
+          validateOnMount={ true }
+          onSubmit={ ( values, { setSubmitting } ) =>
+          {
+            submitHandler( values );
+          } }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+          {
+            ( props ) => (
+              <Form>
+
+                <Tabs>
+
+                  <Tab
+                    nextButtonText="Continue"
+                    valid={ getValid( props, "vf" ) }
+                    title="Verify Account">
+                    <Fade key={ 1 }>
+                      <VerifyAccount formikProps={ props } />
+                    </Fade>
+                  </Tab>
+
+                  <Tab
+                    nextButtonText="Confirm Social Handles"
+                    valid={ getValid( props, "sh" ) }
+                    title="Social Handles">
+                    <Fade key={ 2 }>
+                      <SocialHandle formikProps={ props } />
+                    </Fade>
+                  </Tab>
+
+                  <Tab
+                    isLast
+                    nextButtonText="Complete"
+                    valid={ getValid( props, "bc" ) }
+                    submitHandler={ submitHandler }
+                    title="Business Category">
+                    <Fade key={ 3 }>
+                      <BusinessCategory formikProps={ props } />
+                    </Fade>
+                  </Tab>
+
+                </Tabs>
+
+              </Form>
+
+            )
+          }
+
+        </Formik>
+
+
+
+
+
+
+        <Button className={ styles.logout } >
+          Logout
+        </Button>
+      </section>
+
+    </main>
   );
 }
 

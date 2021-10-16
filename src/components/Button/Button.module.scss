@@ -1,0 +1,21 @@
+@import "../../assets/scss/index.scss";
+
+.button
+{
+    padding: 10px 15px;
+    background: $blue;
+    border-radius: 8px;
+    color:#fff;
+    text-align: center;
+    border: none;
+
+    @include mq("tablet")
+    {
+        padding: 12px 20px;        
+    }
+
+    @include mq("fluid-out")
+    {
+        padding: 15px 30px;        
+    }
+}

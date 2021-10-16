@@ -1,0 +1,82 @@
+@import "./assets/scss/index.scss";
+
+main
+{
+  min-height: 100vh;
+
+  @include mq("tablet")
+  {
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+  }
+
+  
+  .illus
+  {
+    background-color: $bg;
+
+    div
+    {   
+      
+      @include mq("tablet")
+      {
+        width: 30%;
+        height:100vh;
+        left: 0;
+        top:0;
+        position: fixed;
+        background-image: url("./assets/images/login.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+
+
+  .form
+  {
+    position: relative;
+    max-width: 1000px;
+    padding: 76px 22px;
+
+    @include mq("tablet")
+    {
+      padding: 90px 40px;
+    }
+
+    @include mq("fluid-out")
+    {
+      padding: 100px 60px; 
+    }
+    
+    .logout
+    {
+      background:$red;
+      position: absolute;
+      top: 5%;
+      right: 5%;
+
+
+    }
+  }
+
+}
+
+
+::-webkit-scrollbar 
+{
+  width: 10px;
+}
+
+::-webkit-scrollbar-track 
+{
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb 
+{
+  background: $blue;
+}

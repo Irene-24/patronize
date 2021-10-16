@@ -1,0 +1,63 @@
+@import "../../assets/scss/index.scss";
+
+.navigation
+{
+    border-bottom: 1px solid $border;
+    padding-bottom: 20px;
+    list-style-type: none;
+    @include flex($justify:flex-start);
+}
+
+.tabTitle
+{
+    background-color: transparent;
+    border:none;
+    grid-template-columns: 32px auto;
+    gap: 12px;
+    align-items: center;
+    margin-right: 40px;
+    color: $grey;
+    font-weight: 500;
+    font-size: 18px;
+    display: none;
+
+    &.active
+    {
+        color: $black;
+        display: grid;
+    }
+
+    @include mq("tablet")
+    {
+        display: grid;
+    }
+
+
+    .icon
+    {
+        border-radius: 3px;
+        padding:5px 10px;
+        background-color: $border;
+
+        &.active
+        {
+            background-color: $blue;
+            color: #fff;
+        }
+    }
+
+    .title
+    {
+
+    }
+}
+
+.panel
+{
+    .step
+    {
+        color: $grey;
+        font-size: 13px;
+        margin: 40px 0 20px;
+    }    
+}

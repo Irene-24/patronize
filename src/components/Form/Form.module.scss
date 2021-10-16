@@ -1,0 +1,127 @@
+@import "../../assets/scss/index.scss";
+
+.section
+{
+    .title
+    {
+        color:$black;
+        font-weight: 700;
+
+        @include mq("tablet")
+        {
+
+        }
+    }
+
+    .label
+    {
+        font-weight:500;
+        font-size: 12px;
+        line-height: 22px;
+        display: block;
+    }
+
+    .btnRow
+    {
+        padding: 4px 0
+    }
+
+    .pick
+    {
+        background: #F5F6FA;
+        border: 1px solid rgba(20, 23, 55, 0.1);
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 10px;
+        color: $black;
+        font-weight: 500;
+        font-size: 12px;
+        display: inline-block;
+        margin-right: 18px;
+
+        &.active
+        {
+            background: $light-blue;
+            border: 1px solid $blue;
+        }
+
+        @include mq("tablet")
+        {
+            font-size: 14px;
+            padding: 10px 20px;
+            margin-right:22px
+        }
+    }
+
+    .inputRow
+    {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px;
+    }
+
+    .fields
+    {
+        margin-top: 40px;
+    }
+
+    .fieldGroup
+    {
+        position: relative;
+        margin: 40px 0;
+
+
+        input,
+        select
+        {
+            padding: 16px;
+            border: 1px solid $border;
+            display: block;
+            width: 100%;
+            outline: none;
+            border-radius: 12px;
+
+            &:focus
+            {
+                border: 1px solid $blue;
+            }
+        }
+
+        small
+        {
+            font-style: italic;
+            color:$red;
+            font-weight: 300;
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+        }
+    }
+
+    .acc
+    {
+        p
+        {
+            font-size: 12px;
+            line-height: 20px;
+            i
+            {
+                color:#56F2C3;
+            }
+        }
+
+        footer
+        {
+            display: grid;
+            grid-template-columns: 10px auto;
+            gap:5px;
+            align-items: center;
+            border-top: 1px solid $grey;
+            padding:10px 0;
+            margin: 20px 0 10px;
+
+        }
+    }
+
+
+}

@@ -1,0 +1,25 @@
+$black:#141737;
+$blue:#006AFF;
+$light-blue:#DCEAFF;
+$red: #FF6774;
+$grey:#A5B4CB;
+$border:#E9EEF4;
+$bg:#F3E8C9;
+
+
+
+$breakpoints: (
+    "phone-small":  320px,
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "fluid-out":    960px,
+    "tablet-wide":  1024px,
+    "desktop":      1248px,
+    "desktop-med":  1350px,
+    "desktop-wide": 1440px,
+    "max":          1500px,
+    "excess":       2000px
+);
