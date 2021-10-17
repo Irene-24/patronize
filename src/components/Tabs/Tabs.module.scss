@@ -2,10 +2,15 @@
 
 .navigation
 {
-    border-bottom: 1px solid $border;
+    
     padding-bottom: 20px;
     list-style-type: none;
     @include flex($justify:flex-start);
+
+    @include mq("tablet")
+    {
+        border-bottom: 1px solid $border;
+    }
 
 }
 
