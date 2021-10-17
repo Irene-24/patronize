@@ -16,7 +16,7 @@
 
 .mini
 {
-    margin-top: -40px;
+    margin-top: -50px;
     text-align: right;
     @include mq("tablet")
     {
@@ -24,7 +24,7 @@
     }
     button
     {
-        background-position: $light-blue;
+        background-color: $light-blue;
         color: $blue;
         width: 30px;
         height: 30px;
