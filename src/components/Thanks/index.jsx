@@ -1,5 +1,5 @@
 import React from 'react';
-import { keys, getValues, getValue } from "../../utils";
+import { keys, getValue } from "../../utils";
 import styles from './Thanks.module.scss';
 
 

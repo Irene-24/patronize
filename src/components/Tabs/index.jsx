@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
 
 import { Tab } from "./Tab";
 import { TabTitle } from "./TabTitle";
