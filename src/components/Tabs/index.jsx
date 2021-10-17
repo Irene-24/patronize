@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
+
 import { Tab } from "./Tab";
 import { TabTitle } from "./TabTitle";
+import { Button } from "../";
+
+import 
+{
+    uuidv4,
+    canGoTo,
+    normalizeRange
+} from "../../utils";
 
 import styles from './Tabs.module.scss';
 
-const canGoTo = ( currentPos, destination, validStates ) =>
-{
-    const b4Dest = destination - 1 > -1 ? destination - 1 : 0;
-
-    return validStates[ currentPos ] && validStates[ b4Dest ];
-
-};
 
 
 const Tabs = ( { children } ) => 
@@ -23,7 +26,7 @@ const Tabs = ( { children } ) =>
 
         if ( canGoTo( selectedTab, index, validStates ) )
         {
-            setSelectedTab( index );
+            setSelectedTab( normalizeRange( index, children.length ) );
 
         }
     };
@@ -32,6 +35,7 @@ const Tabs = ( { children } ) =>
         <div>
             <nav>
                 <ul className={ styles.navigation }>
+
                     {
                         children.map( ( t, i ) => (
                             <li key={ t.props.title }>
@@ -39,6 +43,7 @@ const Tabs = ( { children } ) =>
                                     title={ t.props.title }
                                     setSelectedTab={ handleTabChange }
                                     index={ i }
+                                    valid={ t.props.valid }
                                     selectedTab={ selectedTab }
 
                                 />
@@ -46,6 +51,25 @@ const Tabs = ( { children } ) =>
                         ) )
                     }
                 </ul>
+
+                <div className={ styles.mini }>
+                    <button
+                        type="button"
+                        disabled={ selectedTab === 0 }
+                        onClick={ () => handleTabChange( selectedTab - 1 ) } >
+                        <i className="las la-angle-left"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        disabled={ selectedTab === children.length - 1 }
+                        onClick={ () => handleTabChange( selectedTab + 1 ) } >
+                        <i className="las la-angle-right"></i>
+                    </button>
+                </div>
+
+
+
             </nav>
 
             <section className={ styles.panel }>
@@ -53,6 +77,22 @@ const Tabs = ( { children } ) =>
                 <p className={ styles.step } >Step { selectedTab + 1 }/{ children.length }</p>
 
                 { children[ selectedTab ] }
+
+
+                {/* 
+- pass key so that the button will not submit form for type=button 
+- replace click with mouse up/mouse down to fix ux issue of click not firing when input fields are changed
+*/}
+                <footer>
+                    <Button
+                        key={ uuidv4() }
+                        onMouseUp={ () => handleTabChange( selectedTab + 1 ) }
+                        onMouseDown={ ( e ) => e.preventDefault() }
+                        type={ !children[ selectedTab ].props.isLast ? "button" : "submit" }>
+                        { children[ selectedTab ].props.nextButtonText }
+
+                    </Button>
+                </footer>
 
 
             </section>

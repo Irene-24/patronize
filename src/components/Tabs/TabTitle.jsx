@@ -17,21 +17,31 @@ const TabTitle = (
         setSelectedTab( index );
     }, [ setSelectedTab, index ] );
 
+    const active = index === selectedTab;
+
 
     return (
         <button
             onClick={ onClick }
+            type="button"
             className={ classNames( styles.tabTitle,
                 {
-                    [ styles.active ]: index === selectedTab
+                    [ styles.active ]: active
                 } ) }>
             <span className={ classNames( styles.icon,
                 {
-                    [ styles.active ]: index === selectedTab,
+                    [ styles.active ]: active
                 } ) } >
-                { valid ? <i className="las la-check"></i> : ( index + 1 ) }
+                { ( valid && !active ) ? <i className="las la-check"></i> : null }
+
+                { ( !valid && active ) ? index + 1 : null }
+
+                { ( !valid && !active ) ? index + 1 : null }
+
+                { ( valid && active ) ? index + 1 : null }
+
             </span>
-            <span className={ styles.title } >
+            <span className={ styles.title }>
                 { title }
             </span>
         </button>

@@ -1,0 +1,27 @@
+@import "../../assets/scss/index.scss";
+
+
+.items
+{
+   @include flex($justify:flex-start);
+   flex-wrap:wrap;
+   max-width: $maxWidth
+}
+
+.grid
+{
+    grid-template-columns: max-content auto;
+    max-width: 600px;
+    margin: 10px 10px 10px 0;
+    font-size: 18px;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid $border;
+    border-radius: 5px;
+    padding:10px;
+
+    .label
+    {
+        font-weight: 700;
+    }
+}

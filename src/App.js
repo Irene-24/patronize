@@ -11,24 +11,27 @@ import
   Fade,
   VerifyAccount,
   BusinessCategory,
-  SocialHandle
+  SocialHandle,
+  Thanks
 } from "./components";
 
 
 const getValid = ( formikProps, key ) =>
 {
-  const { error } = formikProps;
-  console.log( formikProps );
+  const { errors } = formikProps;
   switch ( key ) 
   {
     case "vf":
-      return true;
+      const { bvn, accountNumber, bank } = errors;
+      return !( bvn || accountNumber || bank );
 
     case "sh":
-      return true;
+      const { abeg } = errors;
+      return !abeg;
 
     case "bc":
-      return true;
+      const { businessType, businessCategory } = errors;
+      return !( businessType || businessCategory );
 
     default:
       return true;
@@ -40,11 +43,10 @@ const getValid = ( formikProps, key ) =>
 function App ()
 {
 
-  const [ details, setDetails ] = useState( null );
+  const [ details, setDetails ] = useState( {} );
 
   const submitHandler = values =>
   {
-    console.log( values );
     setDetails( values );
   };
 
@@ -54,59 +56,67 @@ function App ()
       <div className={ styles.illus }> <div /> </div>
       <section className={ styles.form }>
 
-        <Formik
-          initialValues={ initValues }
-          validationSchema={ schema }
-          validateOnMount={ true }
-          onSubmit={ ( values, { setSubmitting } ) =>
-          {
-            submitHandler( values );
-          } }
-        >
+        {
+          details?.abeg ?
+            <Thanks details={ details } />
+            :
+            <Formik
+              initialValues={ initValues }
+              validationSchema={ schema }
+              validateOnMount={ true }
+              onSubmit={ ( values ) =>
+              {
+                submitHandler( values );
+              } }
+            >
 
-          {
-            ( props ) => (
-              <Form>
+              {
+                ( props ) => (
+                  <Form>
 
-                <Tabs>
+                    <Tabs>
 
-                  <Tab
-                    nextButtonText="Continue"
-                    valid={ getValid( props, "vf" ) }
-                    title="Verify Account">
-                    <Fade key={ 1 }>
-                      <VerifyAccount formikProps={ props } />
-                    </Fade>
-                  </Tab>
+                      <Tab
+                        nextButtonText="Continue"
+                        valid={ getValid( props, "vf" ) }
+                        title="Verify Account">
+                        <Fade key={ 1 }>
+                          <VerifyAccount formikProps={ props } />
+                        </Fade>
+                      </Tab>
 
-                  <Tab
-                    nextButtonText="Confirm Social Handles"
-                    valid={ getValid( props, "sh" ) }
-                    title="Social Handles">
-                    <Fade key={ 2 }>
-                      <SocialHandle formikProps={ props } />
-                    </Fade>
-                  </Tab>
+                      <Tab
+                        nextButtonText="Confirm Social Handles"
+                        valid={ getValid( props, "sh" ) }
+                        title="Social Handles">
+                        <Fade key={ 2 }>
+                          <SocialHandle formikProps={ props } />
+                        </Fade>
+                      </Tab>
 
-                  <Tab
-                    isLast
-                    nextButtonText="Complete"
-                    valid={ getValid( props, "bc" ) }
-                    submitHandler={ submitHandler }
-                    title="Business Category">
-                    <Fade key={ 3 }>
-                      <BusinessCategory formikProps={ props } />
-                    </Fade>
-                  </Tab>
+                      <Tab
+                        isLast
+                        nextButtonText="Complete"
+                        valid={ getValid( props, "bc" ) }
+                        submitHandler={ submitHandler }
+                        title="Business Category">
+                        <Fade key={ 3 }>
+                          <BusinessCategory formikProps={ props } />
+                        </Fade>
+                      </Tab>
 
-                </Tabs>
+                    </Tabs>
 
-              </Form>
+                  </Form>
 
-            )
-          }
+                )
+              }
 
-        </Formik>
+            </Formik>
+
+
+
+        }
 
 
 

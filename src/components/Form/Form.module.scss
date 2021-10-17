@@ -13,6 +13,25 @@
         }
     }
 
+    &.socials
+    {
+        input
+        {
+            background-image: url("../../assets/images/at.png");
+            background-size: 14px;
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            padding-left: 35px !important;
+        }
+    }
+
+    .instruction
+    {
+        font-size: 14px;
+        line-height: 22px;
+        color:#7D8DA7;
+    }
+
     .label
     {
         font-weight:500;
@@ -56,19 +75,28 @@
     .inputRow
     {
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        //grid-template-columns: repeat(2,1fr);
+        column-gap: 20px;
     }
 
     .fields
     {
         margin-top: 40px;
+        max-width: $maxWidth;
+
     }
 
     .fieldGroup
     {
         position: relative;
-        margin: 40px 0;
+        margin: 20px 0;
+        
+
+        @include mq("tablet")
+        {
+            margin:40px 0 20px;
+        }
 
 
         input,
@@ -96,6 +124,11 @@
             left: 0;
             font-size: 12px;
         }
+    }
+
+    .pos
+    {
+        margin-top: 0;
     }
 
     .acc

@@ -6,6 +6,39 @@
     padding-bottom: 20px;
     list-style-type: none;
     @include flex($justify:flex-start);
+
+}
+
+.mini
+{
+    margin-top: -40px;
+    text-align: right;
+    @include mq("tablet")
+    {
+        display: none;
+    }
+    button
+    {
+        background-position: $light-blue;
+        color: $blue;
+        width: 30px;
+        height: 30px;
+        border:1px solid $blue;
+        border-radius: 50%;
+        text-align: center;
+
+        &:disabled
+        {
+            cursor: not-allowed;
+            opacity: 0.8;
+            border:1px solid transparent;
+        }
+
+        &:first-of-type
+        {
+            margin-right: 10px;
+        }
+    }
 }
 
 .tabTitle
@@ -39,6 +72,12 @@
         padding:5px 10px;
         background-color: $border;
 
+        i
+        {
+            transform: translateX(-12%);
+            color:$blue;
+        }
+
         &.active
         {
             background-color: $blue;
@@ -48,8 +87,14 @@
 
     .title
     {
-
+        display: none;
+        @include mq("tablet")
+        {
+            display: initial;
+        }
     }
+
+
 }
 
 .panel
@@ -59,5 +104,15 @@
         color: $grey;
         font-size: 13px;
         margin: 40px 0 20px;
-    }    
+    } 
+    
+    & > footer
+    {
+        text-align: right;
+        border-top: 1px solid $border;
+        padding:10px 0;
+        margin: 40px 0 10px;
+        max-width: $maxWidth;
+
+    }
 }

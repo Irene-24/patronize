@@ -3,22 +3,35 @@ import { Field, ErrorMessage } from "formik";
 import classNames from 'classnames';
 
 import { Button, AccordionCard } from "..";
-
+import { banks } from "../../utils";
 import styles from './Form.module.scss';
 import lock from "../../assets/images/lock.svg";
 import lock2 from "../../assets/images/lock2.png";
 
+
+
 const VerifyAccount = ( { formikProps } ) =>
 {
-    const [ isBank, setIsBank ] = useState( false );
+    const [ isBank, setIsBank ] = useState( formikProps.values.bvn ? false : true );
 
     const toggleBank = ( val ) =>
     {
         setIsBank( val );
 
-        formikProps.setFieldValue( "bank" );
-        formikProps.setFieldValue( "bvn" );
-        formikProps.setFieldValue( "accountNumber" );
+        formikProps.setValues( {
+            ...formikProps.values,
+            bvn: "",
+            bank: "",
+            accountNumber: ""
+        }
+        );
+        formikProps.setErrors( {
+            ...formikProps.errors,
+            bvn: "",
+            bank: "",
+            accountNumber: ""
+        }
+        );
 
     };
 
@@ -73,7 +86,23 @@ const VerifyAccount = ( { formikProps } ) =>
                                     htmlFor="bank">
                                     Select Bank
                                 </label>
-                                <Field name="bank" />
+                                <Field as="select" name="bank">
+                                    <option
+                                        value="">
+                                        Choose...
+                                    </option>
+                                    {
+                                        banks.map( b => (
+                                            <option
+                                                key={ b.id }
+                                                value={ b.code }>
+                                                { b.name }
+                                            </option>
+                                        ) )
+                                    }
+
+
+                                </Field>
                                 <ErrorMessage component="small" name="bank" />
                             </div>
                         </div>
