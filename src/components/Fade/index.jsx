@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Fade.module.scss";
 
-const Fade = ( { show = true, children, dur = "1s" } ) =>
+const Fade = ( { show = true, children, dur = "0.4s" } ) =>
 {
     const [ shouldRender, setRender ] = useState( show );
 
