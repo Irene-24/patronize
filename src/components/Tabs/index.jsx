@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { Tab } from "./Tab";
 import { TabTitle } from "./TabTitle";
-import { Button } from "../";
 
 import 
 {
