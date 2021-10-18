@@ -1,11 +1,12 @@
 import React from 'react';
 import { Field, ErrorMessage } from "formik";
 import classNames from 'classnames';
+import { Button } from "..";
 
 import styles from './Form.module.scss';
 
 
-const SocialHandle = () =>
+const SocialHandle = ( { goTo } ) =>
 {
     return (
         <div className={ classNames( styles.section, styles.socials ) }>
@@ -51,6 +52,11 @@ const SocialHandle = () =>
                 </div>
             </div>
 
+            <div className={ styles.next }>
+                <Button onClick={ goTo }>
+                    Confirm Social Handles
+                </Button>
+            </div>
         </div>
     );
 };

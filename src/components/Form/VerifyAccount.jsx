@@ -10,9 +10,10 @@ import lock2 from "../../assets/images/lock2.png";
 
 
 
-const VerifyAccount = ( { formikProps } ) =>
+const VerifyAccount = ( { formikProps, goTo } ) =>
 {
     const [ isBank, setIsBank ] = useState( formikProps.values.bvn ? false : true );
+
 
     const toggleBank = ( val ) =>
     {
@@ -34,6 +35,7 @@ const VerifyAccount = ( { formikProps } ) =>
         );
 
     };
+
 
     return (
         <div className={ styles.section }>
@@ -166,6 +168,12 @@ const VerifyAccount = ( { formikProps } ) =>
 
             </section>
 
+
+            <div className={ styles.next }>
+                <Button onClick={ goTo }>
+                    Next
+                </Button>
+            </div>
 
 
         </div>

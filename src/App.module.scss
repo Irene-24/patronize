@@ -39,16 +39,16 @@ main
   .form
   {
     position: relative;
-    padding: 76px 22px;
+    padding: 76px 22px 20px;
 
     @include mq("tablet")
     {
-      padding: 90px 40px;
+      padding: 90px 40px 20px;
     }
 
     @include mq("fluid-out")
     {
-      padding: 100px 60px; 
+      padding: 98px 60px 0px; 
     }
     
     .logout

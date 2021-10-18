@@ -77,33 +77,54 @@ function App ()
                     <Tabs>
 
                       <Tab
-                        nextButtonText="Continue"
                         valid={ getValid( props, "vf" ) }
                         title="Verify Account">
-                        <Fade key={ 1 }>
-                          <VerifyAccount formikProps={ props } />
-                        </Fade>
+
+                        {
+                          ( goTo ) => (
+                            <Fade key={ 1 }>
+                              <VerifyAccount
+                                goTo={ goTo }
+                                formikProps={ props } />
+                            </Fade>
+                          )
+                        }
+
                       </Tab>
 
+
                       <Tab
-                        nextButtonText="Confirm Social Handles"
                         valid={ getValid( props, "sh" ) }
                         title="Social Handles">
-                        <Fade key={ 2 }>
-                          <SocialHandle formikProps={ props } />
-                        </Fade>
+                        {
+                          ( goTo ) => (
+                            <Fade key={ 2 }>
+                              <SocialHandle
+                                goTo={ goTo }
+                                formikProps={ props } />
+                            </Fade>
+                          )
+                        }
+
                       </Tab>
 
                       <Tab
-                        isLast
-                        nextButtonText="Complete"
                         valid={ getValid( props, "bc" ) }
                         submitHandler={ submitHandler }
                         title="Business Category">
-                        <Fade key={ 3 }>
-                          <BusinessCategory formikProps={ props } />
-                        </Fade>
+
+                        {
+                          ( goTo ) => (
+                            <Fade key={ 3 }>
+                              <BusinessCategory
+                                goTo={ goTo }
+                                formikProps={ props } />
+                            </Fade>
+                          )
+                        }
+
                       </Tab>
+
 
                     </Tabs>
 

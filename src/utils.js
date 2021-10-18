@@ -105,16 +105,6 @@ const businessCategories =
         { id: 'IAB10', name: 'Other' },
     ];
 
-const uuidv4 = () =>
-{
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace( /[xy]/g, ( c ) =>
-    {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : ( r & ( 0x3 | 0x8 ) );
-        return v.toString( 16 );
-    } );
-};
-
 const canGoTo = ( currentPos, destination, validStates ) =>
 {
     const b4Dest = destination - 1 > -1 ? destination - 1 : 0;
@@ -182,7 +172,6 @@ export
     banks,
     businessTypes,
     businessCategories,
-    uuidv4,
     canGoTo,
     normalizeRange,
     keys,

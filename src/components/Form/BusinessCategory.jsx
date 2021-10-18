@@ -11,7 +11,7 @@ import { businessCategories, businessTypes } from "../../utils";
 import styles from './Form.module.scss';
 
 
-const BusinessCategory = ( { formikProps } ) =>
+const BusinessCategory = ( { formikProps, goTo } ) =>
 {
     const setPos = val =>
     {
@@ -118,6 +118,11 @@ const BusinessCategory = ( { formikProps } ) =>
             </div>
 
 
+            <div className={ styles.next }>
+                <Button type="submit" onClick={ goTo }>
+                    Continue
+                </Button>
+            </div>
 
         </div>
     );

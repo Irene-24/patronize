@@ -6,14 +6,11 @@ import { Button } from "../";
 
 import 
 {
-    uuidv4,
     canGoTo,
     normalizeRange
 } from "../../utils";
 
 import styles from './Tabs.module.scss';
-
-
 
 const Tabs = ( { children } ) => 
 {
@@ -21,7 +18,7 @@ const Tabs = ( { children } ) =>
 
     const handleTabChange = index =>
     {
-        const validStates = children.map( t => t.props.valid );
+        const validStates = React.Children.map( children, t => t.props.valid );
 
         if ( canGoTo( selectedTab, index, validStates ) )
         {
@@ -30,13 +27,14 @@ const Tabs = ( { children } ) =>
         }
     };
 
+
     return (
         <div>
             <nav>
                 <ul className={ styles.navigation }>
 
                     {
-                        children.map( ( t, i ) => (
+                        React.Children.map( children, ( t, i ) => (
                             <li key={ t.props.title }>
                                 <TabTitle
                                     title={ t.props.title }
@@ -75,23 +73,8 @@ const Tabs = ( { children } ) =>
 
                 <p className={ styles.step } >Step { selectedTab + 1 }/{ children.length }</p>
 
-                { children[ selectedTab ] }
 
-
-                {/* 
-- pass key so that the button will not submit form for type=button 
-- replace click with mouse up/mouse down to fix ux issue of click not firing when input fields are changed
-*/}
-                <footer>
-                    <Button
-                        key={ uuidv4() }
-                        onMouseUp={ () => handleTabChange( selectedTab + 1 ) }
-                        onMouseDown={ ( e ) => e.preventDefault() }
-                        type={ !children[ selectedTab ].props.isLast ? "button" : "submit" }>
-                        { children[ selectedTab ].props.nextButtonText }
-
-                    </Button>
-                </footer>
+                { children[ selectedTab ].props.children( () => handleTabChange( selectedTab + 1 ) ) }
 
 
             </section>
